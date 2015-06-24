@@ -1,0 +1,49 @@
+.row{
+
+}
+
+.image{
+	display: inline-block;
+	max-width: 300px;
+	max-height: 300px;
+	margin: 10px;
+}
+
+.hide{
+	display: none;
+}
+
+.popup{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	text-align: center;
+}
+
+.popup-img{
+	max-width: 90%;
+	max-height: 100%;
+}
+
+.nav-btn{
+	width: 50px;
+	height: 100%;
+	background-color: green;
+}
+
+.nav-left{
+	float: left;
+}
+
+.nav-right{
+	float: right;
+}
+
+.blank{
+	margin: 0 auto;
+	width: 93%;
+	background-color: rgba(0, 0, 0, 0.5);
+	height: 100%;
+}
