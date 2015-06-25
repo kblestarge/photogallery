@@ -3,10 +3,16 @@
 <head>
 	<title>PhotoGallery</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	
-	<h1>PhotoGallery</h1>
+	<h1>Cyber Photo Gallery</h1>
+
+	<div class="center">
+		<button id="music">Music</button>
+		<button id="soundFX" onclick="soundFX()">SoundFX</button>
+	</div>
 
 	<div class="row">
 		<img id="0" class="image" src="img/Color-bars.jpg" alt="Lynx">
@@ -19,9 +25,19 @@
 		<img id="7" class="image" src="img/lion.jpg" alt="lion">
 	</div>
 
+	<audio id="audio" src="sound/beep1.mp3" ></audio>
+	<audio id="audio2" src="sound/beep2.mp3" ></audio>
+	<audio id="audio3" src="sound/back1.mp3" ></audio>
+	<audio id="audio4" src="sound/voosh2.mp3" ></audio>
+	<audio loop id="musicTrack" src="sound/music4.mp3" ></audio>
+
 	<div class="popup hide">
-		<div class="nav-btn nav-left" onclick="prev()">Prev</div>
-		<div class="nav-btn nav-right" onclick="next()">Next</div>
+		<div class="nav-btn nav-left" onclick="prev()">
+			<p>P<br>R<br>E<br>V</p>
+		</div>
+		<div class="nav-btn nav-right" onclick="next()">
+			<p>N<br>E<br>X<br>T</p>
+		</div>
 		<div class="blank">
 			<img class="popup-img" src="img/Color-bars.jpg" alt="Popup yall head">
 		</div>
