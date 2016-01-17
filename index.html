@@ -3,6 +3,7 @@
 <head>
 	<title>PhotoGallery</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 	<link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -14,15 +15,19 @@
 		<button id="soundFX" onclick="soundFX()">SoundFX</button>
 	</div>
 
-	<div class="row">
-		<img id="0" class="image" src="img/Color-bars.jpg" alt="Lynx">
+	<div id='messagesDiv'></div>
+    <input type='text' id='nameInput' placeholder='URL'>
+    <input type='text' id='messageInput' placeholder='alt'>
+
+	<div id="image-container" class="row">
+<!-- 		<img id="0" class="image" src="img/Color-bars.jpg" alt="Lynx">
 		<img id="1" class="image" src="img/MugShot10Edited.jpg" alt="Cherry Blossom Tree">
 		<img id="2" class="image" src="img/mullet.jpg" alt="World Tech Academy">
 		<img id="3" class="image" src="img/Trophy1.jpg" alt="Trophy for Lucky 7">
 		<img id="4" class="image" src="img/tiger.jpg" alt="a tiger">
 		<img id="5" class="image" src="img/frisbee.jpg" alt="Ultimate frisbee from the future">
 		<img id="6" class="image" src="img/shorse.jpg" alt="shorse">
-		<img id="7" class="image" src="img/lion.jpg" alt="lion">
+		<img id="7" class="image" src="img/lion.jpg" alt="lion"> -->
 	</div>
 
 	<audio id="audio" src="sound/beep1.mp3" ></audio>

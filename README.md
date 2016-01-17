@@ -1,2 +1,0 @@
-# photogallery
-Gallery of photos.

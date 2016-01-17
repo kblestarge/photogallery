@@ -1,25 +1,38 @@
 var musicEnable = false;
 var soundFXEnable = false;
+var imageIds = [];
+var myDataRef = new Firebase('https://photogallery.firebaseio.com/');
 
 $(document).ready(function() {
 
+	$('#image-container img').each(function(){
+		imageIds.push($(this).attr('id'));
+	})
+
+	$('#messageInput').keypress(function (e) {
+        if (e.keyCode == 13) {
+          var name = $('#nameInput').val();
+          var text = $('#messageInput').val();
+          myDataRef.push({url: name, alt: text});
+          $('#messageInput').val('');
+        }
+  	});
+
+	myDataRef.on('child_added', function(snapshot) {
+		var message = snapshot.val();
+		var key = snapshot.key();
+		displayChatMessage(message.url, message.alt, key);
+	});
+
+	function displayChatMessage(url, alt, key) {
+		$('#messagesDiv').text('URL:'+url+' Alt:'+alt+' Key:'+key);
+		$('#image-container').append('<img onclick="imageClicked(\''+key+'\')" id="'+key+'" src="'+url+'" alt="'+alt+'" class="image"/>');
+		imageIds.push(key);
+		console.log(imageIds);
+	};	
 
 	$('.image').click(function(){
-
-		if(soundFXEnable){
-			var audio = document.getElementById("audio");
-       		audio.play();
-		}
-
-		var id = $(this).attr("id");
-		console.log("id:",id);
-
-		setPopup(id);
-
-		$('.popup').animate({
-			height: "toggle",
-			fontSize: "toggle"
-		},500);
+		imageClicked($(this).attr("id"));
 	})
 
 	$('.blank').click(function(){
@@ -28,7 +41,6 @@ $(document).ready(function() {
 			var audio2 = document.getElementById("audio2");
        		audio2.play();
 		}
-
 		$('.popup').animate({
 			height: "toggle",
 			fontSize: "toggle"
@@ -38,7 +50,6 @@ $(document).ready(function() {
 	$('#music').click(function(){
 
 		var music = document.getElementById("musicTrack");
-
 		musicEnable = !musicEnable;
 
 		if(musicEnable){
@@ -54,7 +65,6 @@ $(document).ready(function() {
 	$('#soundFX').click(function(){
 
 		soundFXEnable = !soundFXEnable;
-
 		$(this).toggleClass('btnClicked');
 
 	})
@@ -70,7 +80,8 @@ function setPopup(id) {
 	popupImg[0].src = src;
 	console.log("popupImg.src:",popupImg[0].src);
 
-	i = id;
+	//find index here
+	i = imageIds.indexOf(id);
 	console.log("i:",i);
 }
 
@@ -84,10 +95,10 @@ function prev(){
 	i--;
 
 	if(i < 0){
-		i = 7;
+		i = imageIds.length-1;
 	}
 
-	setPopup(i);
+	setPopup(imageIds[i]);
 }
 
 function next(){
@@ -99,13 +110,25 @@ function next(){
 
 	i++;
 	
-	if(i >= 8){
+	if(i >= imageIds.length){
 		i = 0;
 	}
 
-	setPopup(i);
+	setPopup(imageIds[i]);
 }
 
-// var outerArray = [{"src":"first src","alt":"first alt"}, {"src":"second src","alt":"second alt"}];
+function imageClicked(key){
 
-// console.log(outerArray);
+	if(soundFXEnable){
+		var audio = document.getElementById("audio");
+   		audio.play();
+	}
+
+	console.log("key:",key);
+	setPopup(key);
+
+	$('.popup').animate({
+		height: "toggle",
+		fontSize: "toggle"
+	},500);
+}
