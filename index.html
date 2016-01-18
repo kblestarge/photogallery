@@ -10,42 +10,42 @@
 	
 	<h1>Cyber Photo Gallery</h1>
 
-	<div class="center">
+	<div class="float-right">
 		<button id="music">Music</button>
 		<button id="soundFX" onclick="soundFX()">SoundFX</button>
+		<audio id="audio" src="sound/beep1.mp3" ></audio>
+		<audio id="audio2" src="sound/beep2.mp3" ></audio>
+		<audio id="audio3" src="sound/back1.mp3" ></audio>
+		<audio id="audio4" src="sound/voosh2.mp3" ></audio>
+		<audio loop id="musicTrack" src="sound/music4.mp3" ></audio>
 	</div>
 
-	<div id='messagesDiv'></div>
-    <input type='text' id='nameInput' placeholder='URL'>
-    <input type='text' id='messageInput' placeholder='alt'>
+	<div class="float-left">
+		<h3>Add Internet Image</h3>
+		<label>URL</label>
+	    <input type='text' id='nameInput'>
+	    <label>Caption</label>
+	    <input type='text' id='messageInput'>
+	    <button id="add" onclick="addImage()">Add</button>
+    </div>
 
 	<div id="image-container" class="row">
-<!-- 		<img id="0" class="image" src="img/Color-bars.jpg" alt="Lynx">
-		<img id="1" class="image" src="img/MugShot10Edited.jpg" alt="Cherry Blossom Tree">
-		<img id="2" class="image" src="img/mullet.jpg" alt="World Tech Academy">
-		<img id="3" class="image" src="img/Trophy1.jpg" alt="Trophy for Lucky 7">
-		<img id="4" class="image" src="img/tiger.jpg" alt="a tiger">
-		<img id="5" class="image" src="img/frisbee.jpg" alt="Ultimate frisbee from the future">
-		<img id="6" class="image" src="img/shorse.jpg" alt="shorse">
-		<img id="7" class="image" src="img/lion.jpg" alt="lion"> -->
+		<!-- images will load in here -->
 	</div>
 
-	<audio id="audio" src="sound/beep1.mp3" ></audio>
-	<audio id="audio2" src="sound/beep2.mp3" ></audio>
-	<audio id="audio3" src="sound/back1.mp3" ></audio>
-	<audio id="audio4" src="sound/voosh2.mp3" ></audio>
-	<audio loop id="musicTrack" src="sound/music4.mp3" ></audio>
-
 	<div class="popup hide">
+
 		<div class="nav-btn nav-left" onclick="prev()">
 			<p>P<br>R<br>E<br>V</p>
 		</div>
 		<div class="nav-btn nav-right" onclick="next()">
 			<p>N<br>E<br>X<br>T</p>
 		</div>
-		<div class="blank">
+		<figure class="blank">
 			<img class="popup-img" src="img/Color-bars.jpg" alt="Popup yall head">
-		</div>
+			<figcaption>Example caption from pic</figcaption>
+			<button id="remove" onclick="removeImage()">Remove</button>
+		</figure>
 		
 	</div>
 

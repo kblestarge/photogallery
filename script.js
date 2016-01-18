@@ -11,32 +11,11 @@ $(document).ready(function() {
 
 	$('#messageInput').keypress(function (e) {
         if (e.keyCode == 13) {
-          var name = $('#nameInput').val();
-          var text = $('#messageInput').val();
-          myDataRef.push({url: name, alt: text});
-          $('#messageInput').val('');
+        	addImage();
         }
   	});
 
-	myDataRef.on('child_added', function(snapshot) {
-		var message = snapshot.val();
-		var key = snapshot.key();
-		displayChatMessage(message.url, message.alt, key);
-	});
-
-	function displayChatMessage(url, alt, key) {
-		$('#messagesDiv').text('URL:'+url+' Alt:'+alt+' Key:'+key);
-		$('#image-container').append('<img onclick="imageClicked(\''+key+'\')" id="'+key+'" src="'+url+'" alt="'+alt+'" class="image"/>');
-		imageIds.push(key);
-		console.log(imageIds);
-	};	
-
-	$('.image').click(function(){
-		imageClicked($(this).attr("id"));
-	})
-
 	$('.blank').click(function(){
-
 		if(soundFXEnable){
 			var audio2 = document.getElementById("audio2");
        		audio2.play();
@@ -48,7 +27,6 @@ $(document).ready(function() {
 	})
 
 	$('#music').click(function(){
-
 		var music = document.getElementById("musicTrack");
 		musicEnable = !musicEnable;
 
@@ -59,16 +37,33 @@ $(document).ready(function() {
 		}
 
 		$(this).toggleClass('btnClicked');
-
 	})
 
 	$('#soundFX').click(function(){
-
 		soundFXEnable = !soundFXEnable;
 		$(this).toggleClass('btnClicked');
-
 	})
+
 })
+
+function addImage(){
+	var name = $('#nameInput').val();
+	var text = $('#messageInput').val();
+	myDataRef.push({url: name, alt: text});
+	$('#messageInput').val('');
+	$('#nameInput').val('');
+}
+
+myDataRef.on('child_added', function(snapshot) {
+	var pic = snapshot.val();
+	var key = snapshot.key();
+	AddImageToDOM(pic.url, pic.alt, key);
+});	
+
+function AddImageToDOM(url, alt, key) {
+	$('#image-container').append('<img onclick="imageClicked(\''+key+'\')" id="'+key+'" src="'+url+'" alt="'+alt+'" class="image"/>');
+	imageIds.push(key);
+};
 
 function setPopup(id) {
 
@@ -77,8 +72,12 @@ function setPopup(id) {
 
 	var src = thumbnail.src;
 	
+	//set src
 	popupImg[0].src = src;
 	console.log("popupImg.src:",popupImg[0].src);
+
+	//set caption from alt
+	$('figcaption').text($('#'+id).attr('alt'));
 
 	//find index here
 	i = imageIds.indexOf(id);
@@ -109,11 +108,9 @@ function next(){
 	}
 
 	i++;
-	
 	if(i >= imageIds.length){
 		i = 0;
 	}
-
 	setPopup(imageIds[i]);
 }
 
@@ -131,4 +128,14 @@ function imageClicked(key){
 		height: "toggle",
 		fontSize: "toggle"
 	},500);
+}
+
+function removeImage(){
+	//remove from DOM
+	$('#'+imageIds[i]).remove();
+	//remove from database
+	myDataRef.child(imageIds[i]).remove();
+	//remove from array
+	imageIds.splice(i, 1);
+	console.log('k:',imageIds);
 }

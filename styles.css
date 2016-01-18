@@ -9,10 +9,19 @@ body{
 h1{
 	text-align: center;
 	color: #FEFCCA;
+	/* border: 7px solid red; */
 }
 
-.row{
+.float-left{
+	float: left;
+	width: 50%;
+	margin-top: 20px;
+}
 
+.float-right{
+	float: right;
+	width: 50%;
+	margin-top: 53px;
 }
 
 .center{
@@ -27,16 +36,20 @@ h1{
 	border: none;
 	font-size: 15px;
 	width: 200px;
+	clear: both;
+	float: right;
+	margin: 5px 20px;
 	height: 30px;
 	color: #EF0400;
 	box-shadow: 10px 5px 5px #FEFCCA;
 	text-decoration: line-through;
 }
 
-#music:hover, #soundFX:hover{
+#music:hover, #soundFX:hover, #add:hover{
 	color: #0076A9;
 	background-color: #EF0400;
 	text-decoration: none;
+	cursor: pointer;
 }
 
 .btnClicked{
@@ -54,6 +67,7 @@ h1{
 	padding: 5px;
 	border: solid;
 	border-color: #0076A9;
+	cursor: pointer;
 }
 
 .image:hover{
@@ -76,8 +90,9 @@ h1{
 
 .popup-img{
 	max-width: 80%;
-	max-height: 90%;
+	max-height: 85%;
 	margin-top: 5%;
+	cursor: pointer;
 }
 
 .nav-btn{
@@ -87,6 +102,7 @@ h1{
 	background-color: #FEFCCA;
 	position: relative;
 	opacity: .8;
+	cursor: pointer;
 }
 
 .nav-btn:hover{
@@ -117,4 +133,64 @@ h1{
 	width: 100%;
 	background-color: rgba(0, 0, 0, 0.5);
 	height: 100%;
+}
+
+figcaption{
+	background-color: rgba(254, 252, 202, 0.75);
+	padding: 10px;
+	color: black;
+	position: absolute;
+	bottom: 0;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+}
+
+#remove{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 7px;
+	font-size: 14px;
+	background-color: #ef0400;
+	color: #fefcca;
+	border: none;
+	border-radius: 10px 0 0 0;
+	cursor: pointer;
+}
+
+#remove:hover, #remove:focus {
+	border: 3px solid #0076A9;
+}
+
+#nameInput{
+	width: 90%;
+}
+
+input{
+	padding: 10px
+}
+
+.float-left label, .float-left input{
+	float: left;
+	clear: both;
+	margin-left: 5%;
+}
+
+#add{
+    padding: 12px;
+    font-size: 15px;
+    border: none;
+    float: right;
+    font-family: 'Press Start 2P', cursive;
+    color: #ef0400;
+    background-color: black;
+}
+
+#image-container{clear: both;}
+
+h3{
+	margin: 0 0 10px 5%;
+	text-decoration: underline;
 }
